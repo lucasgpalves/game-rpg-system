@@ -8,8 +8,11 @@ This is a repository of studies with python, creating some RPG systems.
 
 ## Structure
 
+```
 app
 ├── app.py
 └── models
     ├── __init__.py
     └── Player.py
+```
+
