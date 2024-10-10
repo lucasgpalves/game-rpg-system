@@ -30,6 +30,10 @@ class Player:
     def healing(self, potion):
         self.health += potion.heal
         
+        potion._amount -= 1
+        
+        return potion.heal
+        
     """ GETTER and SETTER """
     @property
     def health(self):
