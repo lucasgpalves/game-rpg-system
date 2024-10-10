@@ -1,12 +1,10 @@
-from models import Grid
+from core import Grid
 
-grid = Grid(3, 3)
+grid = Grid(24, 35, 12)
 
 grid.create_grid()
 
 grid.display_grid()
-
-print(grid.write_grid())
 
 # grid_2 = Grid(7, 5, 3)
 

@@ -1,4 +1,5 @@
-from models import Player, Potion
+from models.entities import Player 
+from models.items import Potion
 
 jogador_1 = Player(30, 10, 4)
 jogador_2 = Player(24, 14, 3)

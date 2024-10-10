@@ -1,6 +1,2 @@
-from .Dice import Dice
-from .Item import Item
-from .Player import Player
-from .Potion import Potion
-from .Grid import Grid
-from .Inventory import Inventory
+from models.entities import Entity, Inventory, Player
+from models.items import Item, Potion

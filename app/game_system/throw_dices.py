@@ -1,4 +1,4 @@
-from models import Dice
+from core import Dice
 
 dice_4 = Dice(4)
 

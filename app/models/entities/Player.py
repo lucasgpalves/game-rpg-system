@@ -1,20 +1,21 @@
-import random as rd
+from models.entities import Entity
+from random import randint
 
-class Player:
+class Player(Entity):
     
     _health = None
     _attack = None
     _armor = None
     
     """ CONSTRUCTOR """
-    def __init__(self, health, attack, armor):
-        self._health = health
+    def __init__(self, name, health, attack, armor):
+        super().__init__(name, health)
         self._attack = attack
         self._armor = armor
     
     """ METHODS """
-    def tackle(self, enemy):
-        chance = rd.randint(0, 7)
+    def tackle(self, enemy, bonus = 0):
+        chance = randint(0, 7) + bonus # caso haja bonus seria somado
         print(chance)
         if chance >= enemy.armor:
             if chance == 6 :

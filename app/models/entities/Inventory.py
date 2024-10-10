@@ -1,4 +1,4 @@
-from models.Item import Item
+from models.items import Item
 
 class Inventory:
     

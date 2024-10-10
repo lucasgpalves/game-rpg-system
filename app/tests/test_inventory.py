@@ -1,4 +1,5 @@
-from models import Inventory, Potion, Item
+from models.entities import Inventory
+from models.items import Potion, Item
 
 bag = Inventory(8)
 
