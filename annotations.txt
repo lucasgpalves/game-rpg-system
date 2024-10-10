@@ -1,0 +1,14 @@
+Um inventário é um array ocupado por objetos
+
+Meu item é uma poção
+
+[potion, "_", "_", "_", "_", "_", "_", "_"]
+
+potion foi adicionado no inventário no primeiro slot
+
+Meu item é uma faca
+
+[potion, knife, "_", "_", "_", "_", "_", "_"]
+
+knife foi adicionado no inventário no segundo slot
+pois o primeiro estava ocupado (slot != "_")

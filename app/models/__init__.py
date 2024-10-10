@@ -3,3 +3,4 @@ from .Item import Item
 from .Player import Player
 from .Potion import Potion
 from .Grid import Grid
+from .Inventory import Inventory
