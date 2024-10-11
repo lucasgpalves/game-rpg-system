@@ -1,65 +1,53 @@
+from core import Dice
 from models.entities import Entity
 from random import randint
 
 class Player(Entity):
     
-    _health = None
-    _attack = None
-    _armor = None
+    level = None
+    xp = None
+    inventory = None
     
     """ CONSTRUCTOR """
-    def __init__(self, name, health, attack, armor):
-        super().__init__(name, health)
-        self._attack = attack
-        self._armor = armor
+    def __init__(self, name, health, max_health, armor, movement, level, xp, inventory):
+        super().__init__(name, health, max_health, armor, movement)
+        self.level = level
+        self.xp = xp
+        self.inventory = inventory
     
     """ METHODS """
-    def tackle(self, enemy, bonus = 0):
-        chance = randint(0, 7) + bonus # caso haja bonus seria somado
-        print(chance)
-        if chance >= enemy.armor:
-            if chance == 6 :
-                damage = self.attack * 2
-            else:
-                damage = self.attack
+    def tackle(self, weapon, enemy, bonus = 0):
+        if weapon not in self.inventory: # Verifica se existe arma no inventário
+            raise ValueError('This weapon don\'t exists')
             
-            enemy.health -= damage
+        chance = randint(0, 21) + bonus # Calcula chance de acerto
+        
+        if chance >= enemy.armor: # Verifica se acertou
+            damage_weapon = Dice().throw_dices(weapon._dice)
+            
+            if chance >= 20 : ## Verica se foi crítico 
+                damage = (damage_weapon + bonus) * 2
+            else:
+                damage = damage_weapon + bonus
+            
+            enemy.health -= damage # Reduz da vida do inimigo
             return damage
         
         return 0
     
     def healing(self, potion):
-        self.health += potion.heal
+        if potion not in self.inventory: # Verifica se há poção no inventário
+            raise ValueError('You don\'t have any potion in your inventory')
         
-        potion._amount -= 1
+        if potion.amount <= 0: # Verificação adicional
+            raise ValueError('You don\'t have more potion')         
+        
+        heal_amount = min(potion.heal, self.max_health - self.health) # Menor valor para agregar a vida atual
+        self.health += heal_amount
+        potion.amount -= 1 # Reduz a poção consumida
+        
+        if potion.amount == 0:
+            self.inventory.remove(potion)
         
         return potion.heal
-        
-    """ GETTER and SETTER """
-    @property
-    def health(self):
-        return self._health
-    
-    @health.setter
-    def health(self, health):
-        self._health = health
-    
-    @property
-    def attack(self):
-        return self._attack
-    
-    @attack.setter
-    def attack(self, attack):
-        self._attack = attack
-    
-    @property
-    def armor(self):
-        return self._armor
-    
-    @armor.setter
-    def armor(self, armor):
-        self._armor = armor
-    
-
-    
     

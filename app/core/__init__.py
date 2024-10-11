@@ -1,2 +1,2 @@
-from .Dice import Dice
-from .Grid import Grid
+from core.dice import Dice
+from core.grid import Grid

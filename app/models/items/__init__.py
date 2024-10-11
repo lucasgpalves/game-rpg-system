@@ -1,2 +1,4 @@
-from .Item import Item
-from .Potion import Potion
+from .item import Item
+from .potion import Potion
+
+__all__ = ["Item", "Potion"]
