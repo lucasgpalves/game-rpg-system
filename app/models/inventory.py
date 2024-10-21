@@ -1,14 +1,13 @@
-from models.items import Item
+from .item import Item
 
 class Inventory:
     
-    def __init__(self, slots):
+    def __init__(self, slots: int):
         self.slots = slots
         self.list_items = []
         
     def create_inventory(self):
-        for slot in range(self.slots):
-            self.list_items.append(0)
+        self.list_items = [0] * self.slots
         
     def display_inventory(self):
         for item in self.list_items:
@@ -17,7 +16,7 @@ class Inventory:
             else: 
                 print(item)
         
-    def add_item(self, item):
+    def add_item(self, item: Item):
         for slot in range(len(self.list_items)):
             if self.list_items[slot] != 0:
                 continue

@@ -1,21 +1,17 @@
-from core import Dice
-from models.entities import Entity
+from ._entity import Entity
+
+from .inventory import Inventory
+from .dice import Dice
 from random import randint
 
 class Player(Entity):
     
-    level = None
-    xp = None
-    inventory = None
-    
-    """ CONSTRUCTOR """
-    def __init__(self, name, health, max_health, armor, movement, level, xp, inventory):
+    def __init__(self, name: str, health: float, max_health: float, armor: int, movement: int, level: int, xp: int, inventory: Inventory):
         super().__init__(name, health, max_health, armor, movement)
         self.level = level
         self.xp = xp
         self.inventory = inventory
     
-    """ METHODS """
     def tackle(self, weapon, enemy, bonus = 0):
         if weapon not in self.inventory: # Verifica se existe arma no inventário
             raise ValueError('This weapon don\'t exists')

@@ -2,7 +2,7 @@ from random import randint
 
 class Dice:
     
-    def __init__(self, sides):
+    def __init__(self, sides: int):
         self.sides = sides
         
     def throw_dices(self, amount):

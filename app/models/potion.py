@@ -1,8 +1,8 @@
-from models.items import Item
+from .item import Item
 
 class Potion(Item) :
     
-    def __init__(self, heal, name, price, amount, weight):
+    def __init__(self, heal: int, name: str, price: float, amount:int, weight: float):
         super().__init__(name, price, amount, weight)
         self.heal = heal
     

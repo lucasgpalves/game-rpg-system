@@ -1,15 +1,14 @@
-from models.entities import Inventory
-from models.items import Potion, Item
+from models import Inventory, Potion, Item
 
 bag = Inventory(8)
 
 bag.create_inventory()
 
-potion = Potion(5, 'Poção de Vida', 10, 2)
+potion = Potion(5, 'Poção de Vida', 10, 2, 0.5)
 
 bag.add_item(potion)
 
-knife = Item('Faca', 10, 5)
+knife = Item('Faca', 10, 5, 1)
 
 bag.add_item(knife)
 
