@@ -23,3 +23,6 @@ class Inventory:
             else: 
                 self.list_items[slot] = item
                 break
+            
+    def remove_item(self, item: Item):
+        return None

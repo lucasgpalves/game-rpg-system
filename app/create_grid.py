@@ -1,5 +1,9 @@
-from models import Grid
+from models import Grid2D, Grid3D
 
-grid = Grid(24, 35, 12)
+grid2d = Grid2D(3, 3)
 
-grid.display_grid()
+grid2d.display_grid()
+
+grid3d = Grid3D(2, 2, 2)
+
+grid3d.display_grid()

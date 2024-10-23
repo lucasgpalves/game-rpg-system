@@ -1,6 +1,6 @@
-from models import Item
+from .item import Item
 
-class Grid:
+class Grid3D:
     
     def __init__(self, x: int, y: int, z: int, default_value: int = 0):
         self.x = x
@@ -36,6 +36,20 @@ class Grid:
         x, y, z = cords
         
         return (x + 1, y, z)
+    
+    def create_item(self, cords, item: Item):
+        if item is None:
+            raise ValueError(f'This item {item} don\'t exists')
+        
+        x, y, z = self.attribute_cords(cords)
+        
+        if y >= len(self.table) or z >= len(self.table[0]) or x >= len(self.table[0][0]):
+            raise IndexError('Coordinates out of bounds')
+        
+        for dz in range(z + 1):
+            for dy in range(y + 1):
+                for dx in range(x + 1):
+                    self.table[dz][dy][dx] = item
     
     def destroy_item(self, cords, item: Item):
         x, y, z = self.attribute_cords(cords)

@@ -1,5 +1,6 @@
 from ._entity import Entity
 
+from .potion import Potion
 from .inventory import Inventory
 from .dice import Dice
 from random import randint
@@ -32,18 +33,21 @@ class Player(Entity):
         return 0
     
     def healing(self, potion):
-        if potion not in self.inventory: # Verifica se há poção no inventário
-            raise ValueError('You don\'t have any potion in your inventory')
-        
-        if potion.amount <= 0: # Verificação adicional
-            raise ValueError('You don\'t have more potion')         
-        
-        heal_amount = min(potion.heal, self.max_health - self.health) # Menor valor para agregar a vida atual
-        self.health += heal_amount
-        potion.amount -= 1 # Reduz a poção consumida
-        
-        if potion.amount == 0:
-            self.inventory.remove(potion)
-        
-        return potion.heal
+        if potion.isinstance(potion, Potion):
+            if potion not in self.inventory: # Verifica se há poção no inventário
+                raise ValueError('You don\'t have any potion in your inventory')
+            
+            if potion.amount <= 0: # Verificação adicional
+                raise ValueError('You don\'t have more potion')         
+            
+            heal_amount = min(potion.heal, self.max_health - self.health) # Menor valor para agregar a vida atual
+            self.health += heal_amount
+            potion.amount -= 1 # Reduz a poção consumida
+            
+            if potion.amount == 0:
+                self.inventory.remove(potion)
+            
+            return heal_amount
+        else:
+            raise ValueError('The item what do you want use, is\ not a potion')
     
