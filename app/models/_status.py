@@ -23,3 +23,4 @@ class Status(Enum):
     UNCONSCIOUS = 0x2000   # INCONSCIENTE
     
     IN_COMBAT = 0x4000     # EM COMBATE
+    FLYING = 0x8000        # VOANDO

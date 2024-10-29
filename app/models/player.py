@@ -15,14 +15,26 @@ from .weapon import Weapon
 from ._status import Status
 from random import randint
 
-from typing import List
+from typing import List, Tuple
 
 class Player(Entity):
     
-    def __init__(self, name: str, health: float, max_health: float, armor: int, movement: int, level: int, xp: int, inventory: Inventory, status: List[Status] = None):
+    def __init__(self, 
+                 name: str, 
+                 health: float, 
+                 max_health: float, 
+                 armor: int, 
+                 movement: int, 
+                 level: int, 
+                 xp: int, 
+                 current_position: Tuple[int, int , int],
+                 inventory: Inventory, 
+                 status: List[Status] = None
+                ):
         super().__init__(name, health, max_health, armor, movement)
         self.level = level
         self.xp = xp
+        self.current_position = current_position
         self.inventory = inventory
         self.status = status if status else []
     
@@ -67,6 +79,17 @@ class Player(Entity):
         
         return heal_amount
 
+    def move(self, position: Tuple[int, int, int]):
+        current_position = self.current_position
+        new_position = position
+        
+        distance = sum(abs(new_position[i] - current_position[i]) for i in range(3))
+        
+        if distance > self.movement:
+            raise ValueError("Movement exceeds the permitted range.")
+        
+        self.current_position = new_position
+        return f"Player moved to {self.current_position}"
     
     def change_player_status(self, effect):
         self.status = effect

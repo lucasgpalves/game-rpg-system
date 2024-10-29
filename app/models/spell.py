@@ -11,12 +11,13 @@ import math
 from ._component import Component
 from .item import Item
 from ._speel_shape import SpellShape
+from .dice import Dice
 
 from typing import List
 
 class Spell:
     
-    def __init__(self, name: str, casting_time: int, distance: float, area_radius: float, spell_shape: SpellShape, component: List[Component] = None, component_items: List[Item] = None, duration: int = 0):
+    def __init__(self, name: str, casting_time: int, distance: float, area_radius: float, spell_shape: SpellShape, dice: Dice,component: List[Component] = None, component_items: List[Item] = None, duration: int = 0):
         self.name = name
         self.casting_time = casting_time
         self.distance = distance
@@ -42,3 +43,9 @@ class Spell:
                 return area * width
             case _:
                 raise ValueError("Invalid shape")
+            
+    def calculate_damage(self, amount: int, bonus):
+        
+        damage = Dice.throw_dices(self.dice, amount) + bonus
+        
+        return damage
