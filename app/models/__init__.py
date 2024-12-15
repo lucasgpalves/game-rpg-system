@@ -3,7 +3,7 @@ from ._entity import Entity
 from ._speel_shape import SpellShape
 from ._status import Status
 from .dice import Dice
-from .enemies import Enemie
+# from .enemies import Enemy
 from .grid2d import Grid2D
 from .grid3d import Grid3D
 from .hud import Hud
@@ -17,4 +17,4 @@ from .spell import Spell
 from .tile import Tile
 from .weapon import Weapon
 
-__all__ = [ 'Component', 'Dice', 'Enemie', 'Entity', 'Grid2D', 'Grid3D', 'Inventory', 'Item', 'Hud','Player', 'Potion', 'Shop', 'Spell', 'SpellShape', 'Status', 'Tile', 'Weapon']
+__all__ = [ 'Component', 'Dice', 'Enemy', 'Entity', 'Grid2D', 'Grid3D', 'Inventory', 'Item', 'Hud','Player', 'Potion', 'Shop', 'Spell', 'SpellShape', 'Status', 'Tile', 'Weapon']

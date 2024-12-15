@@ -17,32 +17,31 @@ from typing import List
 
 class Spell:
     
-    def __init__(self, name: str, casting_time: int, distance: float, area_radius: float, spell_shape: SpellShape, dice: Dice,component: List[Component] = None, component_items: List[Item] = None, duration: int = 0):
+    def __init__(self, name: str, 
+                 casting_time: int, 
+                 distance: float, 
+                 area: float, 
+                 spell_shape: SpellShape, 
+                 dice: Dice,
+                 component: List[Component] = None, 
+                 component_items: List[Item] = None, 
+                 duration: int = 0):
         self.name = name
         self.casting_time = casting_time
         self.distance = distance
-        self.area_radius = area_radius
+        self.area = area
         self.spell_shape = spell_shape
+        self.dice = dice
         self.component = component if component else []
         self.component_items = component_items if component_items else []
         self.duration = duration
         
     def calculate_spell_area(self, width:int = 1) -> float:
-        
-        shape = self.spell_shape
-        area = self.area
-        
-        match (shape):
-            case SpellShape.TRIANGLE:
-                return (math.sqrt(3) / 4) * area ** 2
-            case SpellShape.CIRCLE:
-                return math.pi * (area ** 2)
-            case SpellShape.SQUARE:
-                return area ** 2
-            case SpellShape.LINE:
-                return area * width
-            case _:
-                raise ValueError("Invalid shape")
+        if isinstance(self.spell_shape, SpellShape):
+            shape = self.spell_shape.value
+            return math.floor(shape.calculate_area(self.area))
+        else:
+            raise ("Invalid shape")  
             
     def calculate_damage(self, amount: int, bonus):
         

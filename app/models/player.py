@@ -38,7 +38,7 @@ class Player(Entity):
         self.inventory = inventory
         self.status = status if status else []
     
-    def tackle(self, weapon, enemy, bonus = 0):
+    def tackle(self, weapon: Weapon, enemy, bonus = 0):
         if not isinstance(weapon, Weapon):
             raise ValueError('Invalid weapon')
         
@@ -60,7 +60,7 @@ class Player(Entity):
         
         return 0
     
-    def healing(self, potion):
+    def healing(self, potion: Potion) -> int:
         if not isinstance(potion, Potion):
             raise ValueError('The item what do you want use, is\ not a potion')
         

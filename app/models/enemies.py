@@ -2,7 +2,7 @@ from ._entity import Entity
 
 from typing import List, Dict
 
-class Enemie(Entity):
+class Enemy(Entity):
     
     def __init__(self, name: str,
                  health: float, 
